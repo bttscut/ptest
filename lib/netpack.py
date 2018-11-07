@@ -9,11 +9,6 @@ class NetPack(object):
         self.c2s_encrypt = None
         self.s2c_encrypt = None
 
-    def init_rc4(self, s):
-        rc4_key = gen_rc4key(s)
-        self.c2s_encrypt = RC4(rc4_key).crypt
-        self.s2c_encrypt = RC4(rc4_key).crypt
-
     def add(self, buf):
         if self.s2c_encrypt:
             buf = self.s2c_encrypt(buf)
@@ -29,9 +24,11 @@ class NetPack(object):
 
         data = self.buf[HEADER_LEN:plen+HEADER_LEN]
         self.buf = self.buf[plen+HEADER_LEN:]
+        print("get one", len(data))
         return data
 
     def pack(self, data):
+        print(len(data))
         data = struct.pack(HEADER_FLAG, len(data)) + data
         if self.c2s_encrypt:
             data = self.c2s_encrypt(data)

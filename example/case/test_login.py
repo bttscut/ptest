@@ -9,5 +9,6 @@ class TestLogin(unittest.TestCase):
         print("start login")
         c = client.Client()
         c.connect(env.get("login", "server"), int(env.get("login", "port")))
-        print(c)
+        sl = c.call("get_server_list", {"platform":1})
+        print(sl)
 

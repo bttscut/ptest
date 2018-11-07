@@ -1,9 +1,5 @@
 #coding=utf8
-import gevent.monkey
-gevent.monkey.patch_socket()
-
 import os, sys
-sys.path.insert(0, "/home/btt/pysproto/build/lib.linux-x86_64-2.7")
 import unittest
 import argparse
 from lib import env
