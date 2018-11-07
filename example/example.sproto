@@ -1,0 +1,19 @@
+.BasePackage {
+    type 0: integer
+    session 1: integer
+    ud 2: string
+}
+
+.ServerEntry {
+    sid: integer
+    name 1: string
+}
+
+get_server_list 1 {
+    request {
+        platform 0: integer
+    }
+    response {
+        list 0: *ServerEntry
+    }
+}
